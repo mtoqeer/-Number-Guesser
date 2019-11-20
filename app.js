@@ -20,3 +20,20 @@ const game = document.querySelector('#game'),
 minNum.textContent = min;
 maxNum.textContent = max;
 
+// listen for guess
+guessBtn.addEventListener('click', function(e){
+    
+    let guess = parseInt(guessInput.value);
+
+    if(isNaN(guess) || guess < min || guess > max){
+        setMessage(`Please enter number between ${min} and ${max}`, 'red');
+    }
+
+    e.preventDefault();
+});
+
+// set message 
+function setMessage(msg, color){
+    message.style.color = color;
+    message.textContent = msg;
+}
