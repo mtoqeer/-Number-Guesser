@@ -31,32 +31,37 @@ game.addEventListener('mousedown', function(e){
 // listen for guess
 guessBtn.addEventListener('click', function(e){
     
-    let guess = parseInt(guessInput.value);
-
-    if(isNaN(guess) || guess < min || guess > max){
-        setMessage(`Please enter number between ${min} and ${max}`, 'red');
+    if(e.target.className === 'play-again'){
+        window.location.reload();
     } else {
-        if(guess === winningNum){
-            gameOver(true, `${winningNum} is correct, YOU WIN!`)
-        } else{
-            
-            guessesLeft -= 1;
-            
-            if(guessesLeft === 0){
-                gameOver(false, `Game Over, you lost! Correct number was ${winningNum}`);
+    let guess = parseInt(guessInput.value);
+    
+        if(isNaN(guess) || guess < min || guess > max){
+            setMessage(`Please enter number between ${min} and ${max}`, 'red');
+        } else {
+            if(guess === winningNum){
+                gameOver(true, `${winningNum} is correct, YOU WIN!`)
+            } else{
                 
-            } 
-            else 
-            {
-                // Change the border color
-                guessInput.style.borderColor = 'red';
-                // 
-                guessInput.value = '';
-                // set WIN message
-                setMessage(`${guess} is not correct, ${guessesLeft} Guesses Left!`, 'red');
+                guessesLeft -= 1;
+                
+                if(guessesLeft === 0){
+                    gameOver(false, `Game Over, you lost! Correct number was ${winningNum}`);
+                    
+                } 
+                else 
+                {
+                    // Change the border color
+                    guessInput.style.borderColor = 'red';
+                    // 
+                    guessInput.value = '';
+                    // set WIN message
+                    setMessage(`${guess} is not correct, ${guessesLeft} Guesses Left!`, 'red');
+                }
             }
         }
     }
+    
 
     
  
